@@ -1,72 +1,66 @@
-# Difference Machine
+# Difference Machine  
+A hybrid version control system for 3D models and code, integrated with Blender.
 
-Гибридная система контроля версий для 3D-моделей и кода, интегрированная с Blender.
+## 📋 Description  
+**Difference Machine** is a comprehensive solution for managing versions of 3D projects, consisting of:  
+- **Forester CLI** – the core version control system written in Go  
+- **Difference Machine Addon** – a Blender add-on providing a graphical interface  
+- **Python API** – a high-level API for integration with other applications  
 
-## 📋 Описание
-
-Difference Machine - это комплексное решение для управления версиями 3D-проектов, состоящее из:
-
-- **Forester CLI** - ядро системы контроля версий, написанное на Go
-- **Difference Machine Addon** - аддон для Blender, предоставляющий графический интерфейс
-- **Python API** - высокоуровневый API для интеграции с другими приложениями
-
-## 🏗️ Структура проекта
-
+## 🏗️ Project Structure  
 ```
 difference-machine/
 ├── forester/             # Core CLI (Go)
-│   ├── cmd/forester/     # Точка входа CLI
-│   ├── internal/         # Внутренние пакеты
-│   │   ├── commands/    # Команды CLI
-│   │   ├── core/        # Ядро (storage, database, hashing)
-│   │   ├── models/      # Модели данных
-│   │   └── utils/        # Утилиты
-│   ├── go.mod           # Go модуль
-│   ├── Makefile         # Сборка
-│   └── README.md        # Документация Forester CLI
+│   ├── cmd/forester/     # CLI entry point
+│   ├── internal/         # Internal packages
+│   │   ├── commands/    # CLI commands
+│   │   ├── core/        # Core components (storage, database, hashing)
+│   │   ├── models/      # Data models
+│   │   └── utils/        # Utilities
+│   ├── go.mod           # Go module
+│   ├── Makefile         # Build configuration
+│   └── README.md        # Forester CLI documentation
 │
-├── addons/               # Аддоны для редакторов
+├── addons/               # Editor add-ons
 │   └── blender/
-│       └── difference-machine/  # Аддон для Blender
+│       └── difference-machine/  # Blender add-on
 │
 ├── forester_api/         # Python API wrapper
-│   └── README.md         # Документация API
+│   └── README.md         # API documentation
 │
-└── installer/            # Установщик
-    ├── install.sh        # Установщик (Linux/macOS)
-    ├── install.bat       # Установщик (Windows)
-    └── README.md         # Документация установщика
+└── installer/            # Installer
+    ├── install.sh        # Linux/macOS installer
+    ├── install.bat       # Windows installer
+    └── README.md         # Installer documentation
 ```
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start  
 
-### 1. Установка Forester CLI
-
-**Linux:**
+### 1. Install Forester CLI  
+**Linux:**  
 ```bash
 cd forester
 ./LINUX_build_and_install.sh
 ```
 
-**macOS:**
+**macOS:**  
 ```bash
 cd forester
 ./MACOS_build_and_install.sh
 ```
 
-**Windows:**
-```cmd
+**Windows:**  
+```bat
 cd forester
 WINDOWS_build_and_install.bat
 ```
 
-Forester будет установлен:
-- Linux: `/opt/Forester/bin/forester`
-- macOS: `/Applications/Forester/bin/forester`
-- Windows: `C:\Program Files\Forester\bin\forester.exe` или `installer/forester/windows/bin/forester.exe`
+Forester will be installed to:  
+- **Linux**: `/opt/Forester/bin/forester`  
+- **macOS**: `/Applications/Forester/bin/forester`  
+- **Windows**: `C:\Program Files\Forester\bin\forester.exe` or `installer/forester/windows/bin/forester.exe`
 
-### 2. Настройка для аддона Blender
-
+### 2. Configure for Blender Add-on  
 ```bash
 mkdir -p ~/.dfm-setup
 cat > ~/.dfm-setup/setup.cfg << 'CFG'
@@ -75,232 +69,157 @@ path = /opt/Forester
 CFG
 ```
 
-### 3. Установка аддона Blender
-
-Аддон можно установить вручную или использовать установщик:
-
+### 3. Install the Blender Add-on  
+You can install the add-on manually or use the installer:  
 ```bash
 cd installer
 ./install.sh  # Linux/macOS
-# или
+# or
 install.bat   # Windows
 ```
 
-### 4. Использование в Blender
+### 4. Use in Blender  
+1. Open Blender  
+2. Go to `Edit` → `Preferences` → `Add-ons`  
+3. Search for "Difference Machine"  
+4. Enable the add-on  
+The add-on will automatically detect the installed Forester CLI.
 
-1. Откройте Blender
-2. Перейдите в `Edit` → `Preferences` → `Add-ons`
-3. Найдите "Difference Machine"
-4. Включите аддон
-5. Аддон автоматически найдет установленный Forester CLI
 
-## 📚 Документация
+## 🔧 Components  
 
-### Основная документация
+### Forester CLI  
+The core version control engine written in Go. Provides all fundamental operations:  
+- Repository initialization  
+- Commit creation  
+- Branch management  
+- History and diff viewing  
+- Tagging system  
+- Garbage collection  
+- And more  
 
-- **[forester/README.md](forester/README.md)** - Документация Forester CLI
-- **[forester/GUIDE.md](forester/GUIDE.md)** - Полное руководство по Forester (сборка + CLI команды)
-- **[forester/BUILD.md](forester/BUILD.md)** - Детальная инструкция по сборке
+**Key Features:**  
+- Single static binary with no dependencies  
+- Easy cross-compilation for all platforms  
+- Automatic memory management  
+- Built-in concurrency support  
+- Object deduplication  
+- Support for both 3D models and code  
+- Reflog mechanism for safe commit deletion  
 
-### Документация по установке
+### Difference Machine Add-on (Blender)  
+A graphical interface for working with Forester inside Blender, offering:  
+- Visual UI for all operations  
+- Seamless integration into Blender workflows  
+- History browsing and version comparison  
+- Branch and tag management  
+- Review system  
 
-- **[installer/README.md](installer/README.md)** - Документация установщика
-- **[installer/INSTALLATION_GUIDE_RU.md](installer/INSTALLATION_GUIDE_RU.md)** - Руководство по установке (русский)
+### Python API  
+A high-level Python API for integration with external applications:  
+- Unified interface (CLI and C++ bindings)  
+- Automatic backend detection  
+- Type-safe data models  
 
-### API документация
-
-- **[forester_api/README.md](forester_api/README.md)** - Python API документация
-
-### Дополнительная документация
-
-- **[BLENDER_ADDON_GUIDE.md](BLENDER_ADDON_GUIDE.md)** - Полное руководство по аддону Blender
-- **[CHANGELOG_CLI.md](CHANGELOG_CLI.md)** - История изменений
-
-## 🔧 Компоненты
-
-### Forester CLI
-
-Ядро системы контроля версий, написанное на Go. Предоставляет все базовые операции:
-
-- Инициализация репозиториев
-- Создание коммитов
-- Работа с ветками
-- История и просмотр изменений
-- Система тегов
-- Garbage collection
-- И многое другое
-
-**Особенности:**
-- Один статический бинарник без зависимостей
-- Простая кросс-компиляция для всех платформ
-- Автоматическое управление памятью
-- Встроенная поддержка параллелизма
-- Дедупликация объектов
-- Поддержка 3D-моделей и кода
-- Механизм reflog для безопасного удаления коммитов
-
-### Difference Machine Addon (Blender)
-
-Графический интерфейс для работы с Forester в Blender. Предоставляет:
-
-- Визуальный интерфейс для всех операций
-- Интеграцию с рабочим процессом Blender
-- Просмотр истории и сравнение версий
-- Управление ветками и тегами
-- Систему review
-
-### Python API
-
-Высокоуровневый Python API для интеграции с другими приложениями:
-
-- Унифицированный интерфейс (CLI и C++ bindings)
-- Автоматическое определение backend
-- Типобезопасные модели
-
-## 💻 Основные команды CLI
-
+## 💻 Core CLI Commands  
 ```bash
-# Инициализация репозитория
+# Initialize repository
 forester init
 
-# Просмотр статуса
+# Check status
 forester status
 
-# Создание коммита
-forester commit -m "Сообщение коммита"
+# Create a commit
+forester commit -m "Commit message"
 
-# Работа с ветками
+# Branch management
 forester branch feature-name
 forester checkout feature-name
 
-# Просмотр истории
+# View history
 forester log
 
-# Просмотр различий
+# View differences
 forester diff
 
-# Справка
+# Help
 forester --help
 ```
 
-Полное руководство: [forester/GUIDE.md](forester/GUIDE.md)
+## 🛠️ Requirements  
 
-## 🛠️ Требования
+### To Build Forester CLI  
+- Go 1.21 or higher  
+- SQLite3 (library and header files for CGO)  
+- C compiler (for CGO; usually bundled with Go or MinGW)  
 
-### Для сборки Forester CLI
+### For Blender Add-on  
+- Blender 4.5.0 or higher  
+- Forester CLI (installed and configured)  
+- Python 3.10+ (bundled with Blender)  
 
-- **Go 1.21 или выше**
-- **SQLite3** (библиотека и заголовочные файлы для CGO)
-- **Компилятор C** (для CGO, обычно встроен в Go или MinGW)
-
-### Для аддона Blender
-
-- **Blender 4.5.0** или выше
-- **Forester CLI** (установленный и настроенный)
-- **Python 3.10+** (встроен в Blender)
-
-## 📦 Установка через установщик
-
-Простой способ установить все компоненты:
-
+## 📦 Installation via Installer  
+Easy one-step installation for all components:  
 ```bash
 cd installer
 ./install.sh  # Linux/macOS
-# или
+# or
 install.bat   # Windows
 ```
 
-Установщик:
-- Установит Forester CLI
-- Настроит конфигурацию
-- Установит аддон Blender
-- Настроит пути
+The installer will:  
+- Install Forester CLI  
+- Set up configuration  
+- Install the Blender add-on  
+- Configure paths  
 
-Подробнее: [installer/README.md](installer/README.md)
+More details: [installer/README.md](installer/README.md)
 
-## 🔄 Рабочий процесс
+## 🔄 Workflow  
 
-### Базовый workflow
-
+### Basic CLI Workflow  
 ```bash
-# 1. Инициализация проекта
+# 1. Initialize project
 forester init
 
-# 2. Проверка статуса
+# 2. Check status
 forester status
 
-# 3. Создание коммита
+# 3. Create initial commit
 forester commit -m "Initial commit"
 
-# 4. Работа с ветками
+# 4. Work on a new branch
 forester branch feature-new-model
 forester checkout feature-new-model
 
-# 5. Создание коммита с изменениями
+# 5. Commit changes
 forester commit -m "Add new model"
 
-# 6. Возврат в main
+# 6. Switch back to main
 forester checkout main
 ```
 
-### В Blender
+### In Blender  
+- Open the Difference Machine panel  
+- Initialize the repository via UI  
+- Use buttons to create commits, switch branches, and view history  
+- All operations are performed through the graphical interface  
 
-1. Откройте панель Difference Machine в Blender
-2. Инициализируйте репозиторий через UI
-3. Используйте кнопки для создания коммитов, переключения веток и просмотра истории
-4. Все операции выполняются через графический интерфейс
-
-## 🗂️ Файловая структура репозитория
-
-После инициализации создается структура:
-
+## 🗂️ Repository File Structure  
+After initialization, the following structure is created:  
 ```
 project/
-├── .DFM/                 # Служебная директория Forester
-│   ├── database.db       # База данных репозитория
-│   ├── objects/          # Хранилище объектов
-│   └── refs/             # Ссылки (ветки, теги)
-├── .dfmignore           # Файлы для игнорирования (опционально)
-└── ...                  # Ваши файлы проекта
+├── .DFM/                 # Forester internal directory
+│   ├── database.db       # Repository database
+│   ├── objects/          # Object storage
+│   └── refs/             # References (branches, tags)
+├── .dfmignore           # Ignore file (optional)
+└── ...                  # Your project files
 ```
 
-## 🔒 Безопасность и надежность
-
-- **Безопасное удаление коммитов** через механизм reflog
-- **Дедупликация** - одинаковые файлы хранятся один раз
-- **Целостность данных** - проверка хешей и контрольные суммы
-- **Транзакции** - атомарные операции с базой данных
-- **Блокировки файлов** - предотвращение конфликтов при совместной работе
-
-## 📝 Лицензия
-
-[Укажите лицензию проекта]
-
-## 🤝 Вклад в проект
-
-[Информация о том, как внести вклад]
-
-## 🐛 Сообщить о проблеме
-
-Если вы нашли ошибку или у вас есть предложения:
-
-1. Создайте issue в репозитории проекта
-2. Опишите проблему и шаги для воспроизведения
-3. Укажите версию ОС, Blender и Forester
-
-## 🔗 Полезные ссылки
-
-- [Forester CLI Документация](forester/README.md)
-- [Полное руководство по Forester](forester/GUIDE.md)
-- [Руководство по аддону Blender](BLENDER_ADDON_GUIDE.md)
-- [Документация установщика](installer/README.md)
-- [Python API Документация](forester_api/README.md)
-
-## 📄 Дополнительные документы
-
-- [CHANGELOG_CLI.md](CHANGELOG_CLI.md) - История изменений CLI
-
----
-
-**Версия:** 1.0.0  
-**Последнее обновление:** 2024
+## 🔒 Security & Reliability  
+- Safe commit deletion via reflog  
+- Deduplication – identical files stored only once  
+- Data integrity – hash verification and checksums  
+- Atomic database transactions  
+- File locking – prevents conflicts during collaborative work  
