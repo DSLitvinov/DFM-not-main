@@ -1,4 +1,4 @@
-# Difference Machine  
+# Difference Machine 0.3 Ptototype
 A hybrid version control system for 3D models and code, integrated with Blender.
 
 ## 📋 Description  
